@@ -1,6 +1,6 @@
 
 source! /Users/detecti1914/.vimperatorrc.
-" source /home/chenxsan/.vimperatorrc/plugin/_libly.js
+source /home/chenxsan/.vimperatorrc/plugin/_libly.js
 
 
 " Basic
@@ -18,9 +18,8 @@ set editor='bash -lc "mvim -f \$*" mvim '
 " ======================================================================
 noremap j 2j
 noremap k 2k
-" noremap ,r :js __readable_by_evernote.readable_by_evernote__menu__call(buffer.URL)
-" noremap ,R :js __readable_by_evernote.__readable_by_evernote__launch(true)
-" autocmd LocationChange .* :js modes.passAllKeys = /mail\.google\.com/.test(buffer.URL) || /google\.com\/reader\//.test(buffer.URL) || /twitter\.com/.test(buffer.URL) || /feedly\.com/.test(buffer.URL)
+autocmd LocationChange .* :js modes.passAllKeys = /mail\.google\.com/.test(buffer.URL) || /google\.com\/reader\//.test(buffer.URL) || /twitter\.com/.test(buffer.URL) || /feedly\.com/.test(buffer.URL)
+autocmd LocationChange .* :js modes.passAllKeys = /docs\.google\.com/.test(buffer.URL)
 
 
 " Plugins
@@ -29,9 +28,9 @@ noremap k 2k
 command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
 lazy fmaps -u='mail\.google\.com/mail' c / j k n p o u e x s r a # [ ] ? gi gs gt gd ga gc
 lazy fmaps -u='mail\.google\.com/mail/.*/[0-9a-f]+$' c / j,n k,p n,j p,k o u e x s r a # [ ] ? gi gs gt gd ga gc
-lazy fmaps -u='www\.google\.com/reader' -events=vkeypress j k n p m s v A r S N P X O gh ga gs gt gu u / ? J K
-lazy fmaps -u='twitter.com' j k ? <Space> / .
-lazy fmaps -u='twitter.com' -events=vkeydown n m r gh gr gp gf gm gu
+lazy fmaps -u='www\.google\.com/reader' -events=vkeypress j k n p m s v A r S N P X O o gh ga gs gt gu u / ? J K
+" lazy fmaps -u='twitter.com' j k ? <Space> / .
+lazy fmaps -u='twitter.com' -events=vkeydown n m r gh gr gp gf gm gu j k ? <Space> / .
 
 " Twitterator
 let g:twittperator_use_ssl_connection_for_api_ep = 1
@@ -40,7 +39,7 @@ let g:twittperator_use_ssl_connection_for_api_ep = 1
 let g:twittperator_history_limit = 5000
 
 " liberator-overlay-ext
-js mappings.addUserMap([modes.COMMAND_LINE], ["<C-g>"], "", function () plugins.liberatorOverlayExt.toggleShowBackground());
+" js mappings.addUserMap([modes.COMMAND_LINE], ["<C-g>"], "", function () plugins.liberatorOverlayExt.toggleShowBackground());
 style -name liberator-overlay-ext chrome://* .liberator-overlay { opacity: .9; }
 
 " caret-hint.js
@@ -67,20 +66,6 @@ EOM
 let g:command_bookmarklet_prefix = ""
 let g:command_bookmarklet_use_sandbox = 0
 
-" google plus commado
-let g:gplus_commando_map_next = "j"
-let g:gplus_commando_map_prev = "k"
-let g:gplus_commando_map_share = "s"
-let g:gplus_commando_map_plusone = "p"
-let g:gplus_commando_map_comment = "c"
-let g:gplus_commando_map_post = "C"
-let g:gplus_commando_map_yank = "y"
-let g:gplus_commando_map_notification = "n"
-let g:gplus_commando_map_cancel = "<Esc>"
-let g:gplus_commando_map_unfold = "e"
-let g:gplus_commando_map_menu = "m"
-
-
 " Js
 " ======================================================================
 " Firebug
@@ -102,9 +87,9 @@ EOM
 
 command! pushandroid js sendtophone.onToolbarButtonCommand()
 command! clearly js __readable_by_evernote.readable_by_evernote__button__call()
-command! barcode js openURL(mobilebarcode.getBarcodeURL())
+" command! barcode js openURL(mobilebarcode.getBarcodeURL())
 command! developerbar js WebDeveloper.Overlay.toggleToolbar()
-command! feedly js feedlyExBoot.onCommand()
+" command! feedly js feedlyExBoot.onCommand()
 
 
 " Style
